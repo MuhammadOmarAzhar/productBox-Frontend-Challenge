@@ -1,9 +1,34 @@
 {
   "data": {
-    "1" : { "id": 1, "name": "King Size Bed", "price": "300", "img": "./img/bed.jpg"},
-    "2" : { "id": 2, "name": "Comfy Slippers", "price": "15", "img": "./img/slippers.jpg"},
-    "3" : { "id": 3, "name": "CD Rack", "price": "100", "img": "./img/rack.jpg"},
-    "4" : { "id": 4, "name": "Glow Stick Bundle", "price": "10", "img": "./img/sticks.jpg"},
-    "5" : { "id": 5, "name": "Cookie Jar", "price": "25", "img": "./img/cookies.jpg"}
+    "1": {
+      "id": 1,
+      "name": "King Size Bed",
+      "price": "300",
+      "img": "https://habitt.com/cdn/shop/files/1_2_7b34f29f-6c60-4711-b8be-6cafa42ecbd1.jpg?v=1696414574"
+    },
+    "2": {
+      "id": 2,
+      "name": "Comfy Slippers",
+      "price": "15",
+      "img": "https://painfreeaussies.com.au/cdn/shop/products/Home-Slippers-Anti-Slip-Flip-Flops-Woman-s-Sandals-Women-Fashion-Soft-Sole-EVA-Indoor-Slides_2_800x.jpg?v=1659507975"
+    },
+    "3": {
+      "id": 3,
+      "name": "CD Rack",
+      "price": "100",
+      "img": "https://retrospekt.com/cdn/shop/files/AA-VR-CD_1.jpg?v=1691762563&width=3000"
+    },
+    "4": {
+      "id": 4,
+      "name": "Glow Stick Bundle",
+      "price": "10",
+      "img": "https://m.media-amazon.com/images/I/91gP3qPhrGL.jpg"
+    },
+    "5": {
+      "id": 5,
+      "name": "Cookie Jar",
+      "price": "25",
+      "img": "https://m.media-amazon.com/images/I/715iVD1UDYL._AC_UF350,350_QL80_.jpg"
+    }
   }
 }
