@@ -123,6 +123,7 @@ const Cart = () => {
             <button
               onClick={handleCheckout}
               className='bg-gray-800 hover:bg-gray-600 text-white font-semibold py-2 px-4'
+              disabled={cartItems.length === 0}
             >
               Proceed to Checkout
             </button>

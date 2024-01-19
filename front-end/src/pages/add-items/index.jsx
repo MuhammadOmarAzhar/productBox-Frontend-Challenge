@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {toast} from 'react-toastify';
 import axios from 'axios';
 import {Grid} from 'react-loader-spinner';
+import {useMutation, useQueryClient} from '@tanstack/react-query';
 
 const AddItems = () => {
   const [loader, setLoader] = useState(false);
@@ -15,6 +16,23 @@ const AddItems = () => {
     setPrice('');
   };
 
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: async (data) => {
+      await axios.post('http://localhost:3000/items', data);
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries('items');
+      clearState();
+      setLoader(false);
+      toast.success('Item added successfully', {
+        position: 'top-center',
+      });
+    },
+  });
+
   const uploadItem = async () => {
     try {
       setLoader(true);
@@ -24,12 +42,7 @@ const AddItems = () => {
         img: image,
       };
 
-      await axios.post('http://localhost:3000/items', data);
-      clearState();
-      setLoader(false);
-      toast.success('Item added successfully', {
-        position: 'top-center',
-      });
+      await mutation.mutateAsync(data);
     } catch (error) {
       setLoader(false);
       toast.error('Failed to add item', {

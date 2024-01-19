@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowRight, faPlus} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
