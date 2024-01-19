@@ -4,6 +4,7 @@ import {isEmpty} from 'lodash';
 import {useSelector, useDispatch} from 'react-redux';
 import {addToCart} from '@/redux/cartSlice';
 import axios from 'axios';
+import Loader from '@/components/Loader';
 
 const Items = () => {
   const [loader, setLoader] = useState(true);
@@ -38,28 +39,24 @@ const Items = () => {
   return (
     <div className='bg-gray-200 min-h-screen'>
       {loader ? (
-        <div className='h-screen bg-gray-200 text-black'> Loading... </div>
+        <Loader loading={true} />
       ) : (
-        <>
-          <div className='p-4 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5'>
+        <div className='p-10'>
+          <div className=' bg-white p-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'>
             {itemList.map((res) => {
               return (
                 <div
                   key={res.id}
-                  className='max-w-[300px] rounded-lg grid grid-cols-1 overflow-hidden shadow-lg mt-10 mx-2 bg-white'
+                  className='w-64 grid grid-cols-1 overflow-hidden mb-10'
                 >
-                  <div className='flex justify-center items-center'>
-                    <img
-                      className='max-w-[300px] max-h-[200px] mt-4'
-                      src={res.img}
-                      alt='Item'
-                    />
+                  <div>
+                    <img className='w-64 h-64 mb-4' src={res.img} alt='Item' />
                   </div>
-                  <div className='px-6 py-4 w-fit max-w-[500px]'>
-                    <div className='text-blue-400 text-xl mb-2'>{res.name}</div>
-                    <p className='text-orange-600'>Rs. {res.price}</p>
+                  <div className='w-64'>
+                    <div className='text-black text-xl mb-2'>{res.name}</div>
+                    <p className='text-gray-700'>Rs. {res.price}</p>
                     <button
-                      className='bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mt-4'
+                      className='bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 w-full mt-4'
                       onClick={() => handleAddToCart(res)}
                     >
                       Add to Cart
@@ -69,7 +66,7 @@ const Items = () => {
               );
             })}
           </div>
-        </>
+        </div>
       )}
       {isEmpty(itemList) ? (
         <div className='text-gray-600 h-screen flex-1 text-center text-2xl'>

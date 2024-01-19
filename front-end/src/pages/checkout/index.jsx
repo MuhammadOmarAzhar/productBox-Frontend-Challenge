@@ -41,7 +41,7 @@ const Checkout = () => {
   return (
     <div className='bg-gray-300 h-screen p-8'>
       <div className='container mx-auto p-6 bg-white rounded-lg'>
-        <h2 className='text-2xl font-bold mb-4 text-gray-600 text-center'>
+        <h2 className='text-2xl font-bold mb-4 uppercase text-gray-600 text-center'>
           Checkout
         </h2>
         <div className='text-black grid gap-3'>
@@ -77,7 +77,7 @@ const Checkout = () => {
             </p>
             <Button
               variant='contained'
-              className='bg-blue-500'
+              className='bg-gray-800'
               onClick={handlePayment}
             >
               Pay
