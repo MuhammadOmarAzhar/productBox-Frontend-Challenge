@@ -46,7 +46,6 @@ const AddItems = () => {
 
   const uploadItem = async () => {
     try {
-      // Input validation
       if (!formData.name || !formData.price || !formData.img) {
         toast.warning('Please fill in all fields', {
           position: 'top-center',
@@ -120,13 +119,7 @@ const AddItems = () => {
             onClick={uploadItem}
             disabled={loader}
           >
-            {loader ? (
-              <div className='flex justify-center items-center'>
-                <Loader />
-              </div>
-            ) : (
-              'Add Item'
-            )}
+            {loader ? 'Loading...' : 'Add Item'}
           </button>
         </div>
       </div>
