@@ -12,7 +12,10 @@ const Items = () => {
 
   const handleAddToCart = (item) => {
     dispatch(addToCart({id: item.id, details: item}));
-    toast.success('Item added to the cart!', {position: 'top-center'});
+    toast.success('Item added to the cart!', {
+      position: 'top-center',
+      autoClose: 2000,
+    });
   };
 
   const {

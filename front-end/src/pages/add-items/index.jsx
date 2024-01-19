@@ -1,21 +1,24 @@
 import React, {useState} from 'react';
 import {toast} from 'react-toastify';
 import axios from 'axios';
-import {Grid} from 'react-loader-spinner';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
+import Loader from '@/components/Loader';
 
 const AddItems = () => {
   const [loader, setLoader] = useState(false);
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    price: '',
+    img: '',
+  });
 
   const clearState = () => {
-    setImage('');
-    setName('');
-    setPrice('');
+    setFormData({
+      name: '',
+      price: '',
+      img: '',
+    });
   };
-
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -33,16 +36,25 @@ const AddItems = () => {
     },
   });
 
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const uploadItem = async () => {
     try {
+      // Input validation
+      if (!formData.name || !formData.price || !formData.img) {
+        toast.warning('Please fill in all fields', {
+          position: 'top-center',
+        });
+        return;
+      }
       setLoader(true);
-      let data = {
-        name,
-        price,
-        img: image,
-      };
-
-      await mutation.mutateAsync(data);
+      await mutation.mutateAsync(formData);
     } catch (error) {
       setLoader(false);
       toast.error('Failed to add item', {
@@ -74,9 +86,9 @@ const AddItems = () => {
             <input
               type='text'
               className='focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5'
-              required
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
+              value={formData.img}
+              name='img'
+              onChange={handleInputChange}
             />
           </div>
           <div className='my-4'>
@@ -86,21 +98,21 @@ const AddItems = () => {
             <input
               type='text'
               className='focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5'
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formData.name}
+              name='name'
+              onChange={handleInputChange}
             />
           </div>
           <div className='my-4'>
-            <label className='blockmb-2 text-sm font-medium text-gray-900'>
+            <label className='block mb-2 text-sm font-medium text-gray-900'>
               {'Price (Rs.)'}
             </label>
             <input
               type='text'
               className='focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5'
-              required
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              value={formData.price}
+              name='price'
+              onChange={handleInputChange}
             />
           </div>
           <button
@@ -110,16 +122,7 @@ const AddItems = () => {
           >
             {loader ? (
               <div className='flex justify-center items-center'>
-                <Grid
-                  height='30'
-                  width='30'
-                  color='#FFFFFF'
-                  ariaLabel='grid-loading'
-                  radius='12.5'
-                  wrapperStyle={{}}
-                  wrapperClass=''
-                  visible={true}
-                />
+                <Loader />
               </div>
             ) : (
               'Add Item'

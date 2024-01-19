@@ -1,11 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Radio,
-  RadioGroup,
-  FormControl,
-  FormControlLabel,
-  Button,
-} from '@mui/material';
 import {useRouter} from 'next/router';
 import Swal from 'sweetalert2';
 import {useDispatch} from 'react-redux';
@@ -45,43 +38,47 @@ const Checkout = () => {
           Checkout
         </h2>
         <div className='text-black grid gap-3'>
-          <FormControl component='fieldset'>
-            <RadioGroup
-              row
-              aria-label='payment-method'
-              name='payment-method'
-              value={paymentMethod}
-              onChange={handlePaymentChange}
-            >
+          <div className='mb-4'>
+            <label className='block text-sm font-semibold mb-2'>
+              Payment Method
+            </label>
+            <div className='flex gap-3'>
               <div>
-                <div className='hover:shadow-lg border rounded-lg px-2 mb-2'>
-                  <FormControlLabel
+                <label className='flex items-center cursor-pointer'>
+                  <input
+                    type='radio'
+                    name='payment-method'
                     value='cashOnDelivery'
-                    control={<Radio />}
-                    label='Cash on Delivery'
+                    checked={paymentMethod === 'cashOnDelivery'}
+                    onChange={handlePaymentChange}
                   />
-                </div>
-                <div className='hover:shadow-lg border rounded-lg px-2 mb-2'>
-                  <FormControlLabel
-                    value='cardPayment'
-                    control={<Radio />}
-                    label='Card Payment'
-                  />
-                </div>
+                  <span className='ml-2'>Cash on Delivery</span>
+                </label>
               </div>
-            </RadioGroup>
-          </FormControl>
-          <div className='flex-1 sm:flex items-center justify-between w-full gap-3'>
-            <p className='font-semibold text-black mb-2 sm:mb-0'>
+              <div>
+                <label className='flex items-center cursor-pointer'>
+                  <input
+                    type='radio'
+                    name='payment-method'
+                    value='cardPayment'
+                    checked={paymentMethod === 'cardPayment'}
+                    onChange={handlePaymentChange}
+                  />
+                  <span className='ml-2'>Card Payment</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className='flex items-center justify-between gap-3'>
+            <p className='font-semibold text-black'>
               Total Amount: Rs. {totalAmount}
             </p>
-            <Button
-              variant='contained'
-              className='bg-gray-800'
+            <button
+              className='bg-gray-800 text-white px-4 py-2 rounded'
               onClick={handlePayment}
             >
               Pay
-            </Button>
+            </button>
           </div>
         </div>
       </div>

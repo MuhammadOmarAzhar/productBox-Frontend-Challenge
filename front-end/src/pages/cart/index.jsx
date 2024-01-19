@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {removeFromCart} from '@/redux/cartSlice';
 import {useRouter} from 'next/router';
-import {Divider} from '@mui/material';
 import Link from 'next/link';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrash} from '@fortawesome/free-solid-svg-icons';
@@ -31,8 +30,8 @@ const Cart = () => {
   }, []);
 
   return (
-    <div className='bg-gray-300 flex gap-10 min-h-screen p-8'>
-      <div className='p-6 bg-white w-3/4 min-h-screen'>
+    <div className='bg-gray-300 flex-1 md:flex gap-10 min-h-screen p-8'>
+      <div className='p-6 bg-white w-full md:w-3/4 min-h-screen'>
         <h2 className='text-2xl font-bold mb-4 text-gray-600 uppercase text-center'>
           Shopping Cart
         </h2>
@@ -100,7 +99,7 @@ const Cart = () => {
             </div>
           ))}
       </div>
-      <div className='grid grid-cols-1 bg-white p-4 h-52 w-1/4'>
+      <div className='grid grid-cols-1 bg-white p-4 h-52 w-full md:w-1/4'>
         {isClient && (
           <>
             <div className='flex justify-between'>
@@ -115,7 +114,7 @@ const Cart = () => {
               <p className=' text-black'>Duties & Taxes: </p>
               <p className='text-gray-600 '>Due Upon Delivery</p>
             </div>
-            <Divider />
+            <div className='border-b border-gray-300'></div>
             <div className='flex justify-between'>
               <p className='font-semibold text-black'>You Pay: </p>
               <p className='text-gray-600'>Rs. {totalAmount}</p>
